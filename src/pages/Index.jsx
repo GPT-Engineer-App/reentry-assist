@@ -2,13 +2,11 @@
 import { Box, Container, Heading, SimpleGrid, Text, Button, VStack, HStack, Icon, Image, Input, Stack } from "@chakra-ui/react";
 import { FaHome, FaSuitcase, FaUserMd, FaGavel, FaUsers, FaBook, FaRegLifeRing, FaGraduationCap, FaLock } from "react-icons/fa";
 
-import { Logo } from "./Logo";
-
 const Index = () => {
+  // TODO: Create the website here!
   return (
     <Container maxW="container.xl">
       <VStack spacing={8}>
-        <Logo />
         <Box p={4}>
           <Heading as="h1" size="xl" textAlign="center">
             Welcome to the Re-Entry Mobile Application
