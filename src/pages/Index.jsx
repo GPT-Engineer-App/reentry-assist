@@ -1,9 +1,27 @@
 // Re-Entry Mobile Application Main Page Component
-import { Box, Container, Heading, SimpleGrid, Text, Button, VStack, HStack, Icon, Image, Input, Stack } from "@chakra-ui/react";
+import { Box, Container, Heading, SimpleGrid, Text, Button, VStack, HStack, Icon, Image, Input, Stack, useToast } from "@chakra-ui/react";
 import { Logo } from "./Logo";
 import { FaHome, FaSuitcase, FaUserMd, FaGavel, FaUsers, FaBook, FaRegLifeRing, FaGraduationCap, FaLock } from "react-icons/fa";
 
 const Index = () => {
+  const toast = useToast();
+
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        toast({
+          title: "Image Upload",
+          description: "Image uploaded successfully!",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
   return (
     <Container maxW="container.xl">
       <VStack spacing={8}>
@@ -33,10 +51,17 @@ const Index = () => {
           </Heading>
           <SearchResources />
         </Box>
+        <ImageUpload onUpload={handleImageUpload} />
       </VStack>
     </Container>
   );
 };
+
+const ImageUpload = ({ onUpload }) => (
+  <Box textAlign="center" mt={8}>
+    <Input type="file" accept="image/*" onChange={onUpload} />
+  </Box>
+);
 
 const ResourceCard = ({ icon, title, description }) => (
   <VStack p={5} boxShadow="md" borderRadius="md" align="center" bgColor="gray.100">
